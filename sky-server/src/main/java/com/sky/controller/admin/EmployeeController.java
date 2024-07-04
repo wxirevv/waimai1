@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -103,4 +104,17 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+    /**
+     * 启用禁用员工账户
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用禁用员工账户")
+    public Result startOrStop(@PathVariable Integer status, Long id){
+        log.info("启用禁用员工账户:{}",status,id);
+        employeeService.startOrStop(status,id);
+        return Result.success();
+    }
 }
